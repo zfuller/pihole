@@ -1,4 +1,4 @@
-# Pihole Rasberry Pi Role
+# pihole raspberry pi ansible role
 
 Role installs and configures Pihole https://pi-hole.net/
 
@@ -8,9 +8,11 @@ Documents relating to pi-hole are at https://docs.pi-hole.net/
 Raspberry Pi with Raspbian
 
 ## Role Variables
+[defaults/main.yml](defaults/main.yml) for default values
 ```yaml
 pihole_repo: https://github.com/pi-hole/pi-hole.git
 pihole_directory:
+pihole_branch:
 
 pihole_setupvars_pihole_interface:
 pihole_setupvars_ipv4_address:
@@ -54,8 +56,8 @@ Cloudflare:
 ```
 
 ### Required Variables
-#### pihole_setupvars_WEBPASSWORD
-You will need to generate a admin password for the `pihole_setupvars_WEBPASSWORD` variable, password is hashed with sha256 twice. You can genearte a password with the following shell command.
+#### pihole_setupvars_webpassword
+You will need to generate a admin password for the `pihole_setupvars_webpassword` variable, password is hashed with sha256 twice. You can genearte a password with the following shell command.
 
 With the password in a file (reccomended).
 ```shell
@@ -69,8 +71,8 @@ echo -n notsosecretpassword | sha256sum | awk '{printf "%s", $1}' | sha256sum
 
 Reccomended to store this variable in ansible vault.
 
-#### pihole_setupvars_IPV4_ADDRESS
+#### pihole_setupvars_ipv4_address
 IPv4 adress of the pihole
 
-#### pihole_setupvars_PIHOLE_DNS_1/2
+#### pihole_setupvars_pihole_dns_1/2
 DNS servers you want the pihole to use
