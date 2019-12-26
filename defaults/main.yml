@@ -25,5 +25,3 @@ pihole_setupvars_conditional_forwarding_ip:
 pihole_setupvars_conditional_forwarding_domain:
 pihole_setupvars_conditional_forwarding_reverse:
 pihole_setupvars_dnsmasq_listening: "single"
-
-
