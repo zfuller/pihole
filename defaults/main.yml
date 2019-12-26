@@ -1,0 +1,28 @@
+---
+# task variables
+pihole_repo: https://github.com/pi-hole/pi-hole.git
+pihole_repo_depth: 1
+pihole_directory: /home/pi/pihole
+
+## setupVars.conf
+pihole_setupvars_PIHOLE_INTERFACE: "eth0"
+pihole_setupvars_IPV4_ADDRESS:
+pihole_setupvars_IPV6_ADDRESS:
+pihole_setupvars_QUERY_LOGGING: "true"
+pihole_setupvars_INSTALL_WEB_SERVER: "true"
+pihole_setupvars_INSTALL_WEB_INTERFACE: "true"
+pihole_setupvars_LIGHTTPD_ENABLED: "true"
+pihole_setupvars_WEBPASSWORD:
+pihole_setupvars_BLOCKING_ENABLED: "true"
+pihole_setupvars_PIHOLE_DNS_1:
+pihole_setupvars_PIHOLE_DNS_2:
+pihole_setupvars_DNS_FQDN_REQUIRED: "true"
+pihole_setupvars_DNS_BOGUS_PRIV: "true"
+pihole_setupvars_DNSSEC: "true"
+pihole_setupvars_CONDITIONAL_FORWARDING: "false"
+pihole_setupvars_CONDITIONAL_FORWARDING_IP:
+pihole_setupvars_CONDITIONAL_FORWARDING_DOMAIN:
+pihole_setupvars_CONDITIONAL_FORWARDING_REVERSE:
+pihole_setupvars_DNSMASQ_LISTENING: "single"
+
+

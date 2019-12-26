@@ -1,0 +1,15 @@
+galaxy_info:
+  author: zfuller
+  description: Simple role to install and configure pihole on a raspberry pi
+  issue_tracker_url: https://github.com/zfuller/pihole/issues
+  license: GPLv2
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+        - jessie
+        - stretch
+  galaxy_tags:
+    - pihole
+    - raspberry pi

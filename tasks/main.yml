@@ -1,0 +1,28 @@
+---
+- name: ensure git
+  package:
+    name: git
+    state: present
+
+- name: cloning pihole
+  git:
+    repo: "{{ pihole_repo }}"
+    dest: "{{ pihole_directory }}"
+    depth: "{{ pihole_repo_depth }}"
+
+- name: making directories
+  file:
+    path: "/etc/pihole/"
+    state: directory
+    mode: 0755
+
+- name: pushing config file setupVars
+  template:
+    src: templates/setupVars.conf.j2
+    dest: "/etc/pihole/setupVars.conf"
+    mode: 0644
+
+- name: installing pihole
+  shell:
+    chdir: "{{ pihole_directory }}/automated install/"
+    cmd: "bash basic-install.sh --unattended"
