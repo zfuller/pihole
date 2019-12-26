@@ -3,6 +3,7 @@
   package:
     name: git
     state: present
+    version: "{{ pihole_branch }}"
 
 - name: cloning pihole
   git:

@@ -3,6 +3,7 @@
 pihole_repo: https://github.com/pi-hole/pi-hole.git
 pihole_repo_depth: 1
 pihole_directory: /home/pi/pihole
+pihole_branch: "master"
 
 ## setupVars.conf
 pihole_setupvars_pihole_interface: "eth0"
