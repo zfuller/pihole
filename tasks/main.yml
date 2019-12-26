@@ -3,13 +3,13 @@
   package:
     name: git
     state: present
-    version: "{{ pihole_branch }}"
 
 - name: cloning pihole
   git:
     repo: "{{ pihole_repo }}"
     dest: "{{ pihole_directory }}"
     depth: "{{ pihole_repo_depth }}"
+    version: "{{ pihole_branch }}"
 
 - name: making directories
   file:
