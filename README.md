@@ -12,25 +12,25 @@ Raspberry Pi with Raspbian
 pihole_repo: https://github.com/pi-hole/pi-hole.git
 pihole_directory:
 
-pihole_setupvars_PIHOLE_INTERFACE:
-pihole_setupvars_IPV4_ADDRESS:
-pihole_setupvars_IPV6_ADDRESS:
-pihole_setupvars_QUERY_LOGGING:
-pihole_setupvars_INSTALL_WEB_SERVER:
-pihole_setupvars_INSTALL_WEB_INTERFACE:
-pihole_setupvars_LIGHTTPD_ENABLED:
-pihole_setupvars_WEBPASSWORD:
-pihole_setupvars_BLOCKING_ENABLED:
-pihole_setupvars_PIHOLE_DNS_1:
-pihole_setupvars_PIHOLE_DNS_2:
-pihole_setupvars_DNS_FQDN_REQUIRED:
-pihole_setupvars_DNS_BOGUS_PRIV:
-pihole_setupvars_DNSSEC:
-pihole_setupvars_CONDITIONAL_FORWARDING:
-pihole_setupvars_CONDITIONAL_FORWARDING_IP:
-pihole_setupvars_CONDITIONAL_FORWARDING_DOMAIN:
-pihole_setupvars_CONDITIONAL_FORWARDING_REVERSE:
-pihole_setupvars_DNSMASQ_LISTENING:
+pihole_setupvars_pihole_interface:
+pihole_setupvars_ipv4_address:
+pihole_setupvars_ipv6_address:
+pihole_setupvars_query_logging:
+pihole_setupvars_install_web_server:
+pihole_setupvars_install_web_interface:
+pihole_setupvars_lighttpd_enabled:
+pihole_setupvars_webpassword:
+pihole_setupvars_blocking_enabled:
+pihole_setupvars_pihole_dns_1:
+pihole_setupvars_pihole_dns_2:
+pihole_setupvars_dns_fqdn_required:
+pihole_setupvars_dns_bogus_priv:
+pihole_setupvars_dnssec:
+pihole_setupvars_conditional_forwarding:
+pihole_setupvars_conditional_forwarding_ip:
+pihole_setupvars_conditional_forwarding_domain:
+pihole_setupvars_conditional_forwarding_reverse:
+pihole_setupvars_dnsmasq_listening:
 ```
 
 ### DNS
