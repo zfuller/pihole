@@ -24,7 +24,7 @@
     dest: "/etc/pihole/setupVars.conf"
     mode: 0644
 
-- name: Modifying memory in php-fpm
+- name: Modifying webroot in installation script
       lineinfile:
         path: "{{ pihole_directory }}/automated install/basic-install.sh"
         regexp: '^.*webroot.*$'

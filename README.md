@@ -14,6 +14,8 @@ pihole_repo: https://github.com/pi-hole/pi-hole.git
 pihole_directory:
 pihole_branch:
 
+pihole_webroot: 
+
 pihole_setupvars_pihole_interface:
 pihole_setupvars_ipv4_address:
 pihole_setupvars_ipv6_address:
