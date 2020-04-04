@@ -25,12 +25,35 @@
     mode: 0644
 
 - name: Modifying webroot in installation script
-      lineinfile:
-        path: "{{ pihole_directory }}/automated install/basic-install.sh"
-        regexp: '^.*webroot.*$'
-        line: "webroot = {{ pihole_webroot }}"
+  lineinfile:
+    path: "{{ pihole_directory }}/automated install/basic-install.sh"
+    regexp: '^.*webroot.*$'
+    line: "webroot = {{ pihole_webroot }}"
+
+- name: Creation of Pihole web directory
+  file:
+    path: "{{ pihole_webroot }}"
+    owner: "{{ webserver_user }}"
+    group: "{{ webserver_group }}"
+    mode: 0750
+    recurse: yes
+    state: directory
+  when: pihole_webroot != "/var/www/html"
 
 - name: installing pihole
   shell:
     chdir: "{{ pihole_directory }}/automated install/"
     cmd: "bash basic-install.sh --unattended"
+
+- name: Fixing permissions if webroot is not default
+  block:
+    - name: Fixing directories permissions in PiHole web files
+      command: find {{ pihole_webroot }} -type d -exec chmod -c 0750 {} \;
+      register: d_chmod_result
+      changed_when: "d_chmod_result.stdout != \"\"
+
+    - name: Fixing files permissions in PiHole web files
+      command: find {{ pihole_webroot }} -type f -exec chmod -c 0640 {} \;
+      register: f_chmod_result
+      changed_when: "f_chmod_result.stdout != \"\""
+  when: pihole_webroot != "/var/www/html"
