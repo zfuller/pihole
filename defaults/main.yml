@@ -5,6 +5,9 @@ pihole_repo_depth: 1
 pihole_directory: /home/pi/pihole
 pihole_branch: "master"
 
+## install script configuration
+pihole_webroot: "/var/www/html"
+
 ## setupVars.conf
 pihole_setupvars_pihole_interface: "eth0"
 pihole_setupvars_ipv4_address:
