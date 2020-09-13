@@ -1,6 +1,6 @@
 ---
 - name: ensure git
-  apt:
+  package:
     name: git
     state: present
 
