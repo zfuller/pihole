@@ -1,9 +1,8 @@
 ---
 - name: ensure git
-  apt:
+  package:
     name: git
     state: present
-    force_apt_get: yes
 
 - name: cloning pihole
   git:
