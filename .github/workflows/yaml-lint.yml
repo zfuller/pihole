@@ -1,5 +1,5 @@
 ---
-name: Yaml Lint
+name: Yaml Lint Check
 on: [push, pull_request]
 jobs:
   lint:
