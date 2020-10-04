@@ -1,15 +1,28 @@
+---
 galaxy_info:
   author: zfuller
-  description: Simple role to install and configure pihole on a raspberry pi
+  description: Simple role to install and configure pihole
   issue_tracker_url: https://github.com/zfuller/pihole/issues
   license: GPLv2
   min_ansible_version: 2.4
   platforms:
+    - name: Fedora
+      versions:
+        - 31
+        - 32
+    - name: CentOS
+      versions:
+        - 7
+        - 8
     - name: Debian
       versions:
         - buster
-        - jessie
         - stretch
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
   galaxy_tags:
     - pihole
     - raspberrypi

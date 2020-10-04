@@ -2,8 +2,12 @@
 # task variables
 pihole_repo: https://github.com/pi-hole/pi-hole.git
 pihole_repo_depth: 1
-pihole_directory: /home/pi/pihole
+pihole_user: pihole
+pihole_group: pihole
+pihole_directory: "/home/{{ pihole_user }}/pihole"
 pihole_branch: "master"
+pihole_etc_dir: /etc/pihole/
+pihole_bin_path: /usr/local/bin/pihole
 
 ## setupVars.conf
 pihole_setupvars_pihole_interface: "eth0"
@@ -25,3 +29,7 @@ pihole_setupvars_conditional_forwarding_ip:
 pihole_setupvars_conditional_forwarding_domain:
 pihole_setupvars_conditional_forwarding_reverse:
 pihole_setupvars_dnsmasq_listening: "single"
+pihole_setupvars_admin_email:
+pihole_setupvars_weblayout: "boxed"
+pihole_setupvars_webtheme: "default-dark"
+pihole_setupvars_rev_server: "false"
