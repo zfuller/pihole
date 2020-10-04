@@ -7,4 +7,4 @@ rules:
     spaces: 2
 
 ignore: |
-  .yamllint.yaml
+  .yamllint.yml
