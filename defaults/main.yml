@@ -8,6 +8,8 @@ pihole_directory: "/home/{{ pihole_user }}/pihole"
 pihole_branch: "master"
 pihole_etc_dir: /etc/pihole/
 pihole_bin_path: /usr/local/bin/pihole
+pihole_update: true
+pihole_reinstall: false
 
 ## setupVars.conf
 pihole_setupvars_pihole_interface: "eth0"

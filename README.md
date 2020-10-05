@@ -67,10 +67,3 @@ Cloudflare: https://1.1.1.1/dns/
   roles:
     - zfuller.pihole
 ```
-
-## tags
-```yaml
-update_pihole
-```
-
-runs `pihole -up` command

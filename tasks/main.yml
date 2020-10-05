@@ -8,7 +8,6 @@
   stat:
     path: "{{ pihole_bin_path }}"
   register: pihole_bin
-  tags: always
 
 - name: install pihole
   block:
@@ -72,15 +71,20 @@
         cmd: "bash basic-install.sh --unattended"
 
   when:
-    - not pihole_bin.stat.exists
-  tags: always
+    - not pihole_bin.stat.exists or pihole_reinstall
 
-- name: update pihole
-  command: "{{ pihole_bin_path }} -up"
-  tags:
-    - never
-    - update_pihole
-  when: pihole_bin.stat.exists
+- name: "check and apply updates to pihole"
+  command: "{{ pihole_bin_path }} updatePihole"
+  register: updatePihole
+  when:
+    - pihole_bin.stat.exists
+    - pihole_update|bool
+    - not pihole_reinstall
+
+- name: Output from update
+  debug:
+    var: updatePihole.stdout_lines
+  when: updatePihole.changed == true
 
 - name: Finished! ipv4
   debug:
