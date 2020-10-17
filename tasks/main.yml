@@ -43,8 +43,14 @@
         dest: "{{ pihole_directory }}"
         depth: "{{ pihole_repo_depth }}"
         version: "{{ pihole_branch }}"
-      become_user: "{{ pihole_user }}"
-      become: true
+
+    - name: fix file permissions
+      file:
+        path: "{{ pihole_directory }}"
+        state: directory
+        recurse: yes
+        owner: "{{ pihole_user }}"
+        group: "{{ pihole_group }}"
 
     - name: check if pihole etc dir exists
       stat:
