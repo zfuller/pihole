@@ -1,0 +1,4 @@
+# handlers file
+---
+- name: restart pi-hole
+  command: "{{ pihole_bin_path }} restartdns"

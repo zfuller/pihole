@@ -63,6 +63,7 @@
     src: templates/setupVars.conf.j2
     dest: "{{ pihole_etc_dir }}/setupVars.conf"
     mode: 0644
+  notify: restart pi-hole
 
 - name: check for existing installation of pihole
   stat:
