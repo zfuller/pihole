@@ -18,8 +18,9 @@ REV_SERVER_DOMAIN={{ pihole_setupvars_rev_server_domain }}
 PIHOLE_INTERFACE={{ pihole_setupvars_pihole_interface }}
 IPV4_ADDRESS={{ pihole_setupvars_ipv4_address }}
 IPV6_ADDRESS={{ pihole_setupvars_ipv6_address }}
-PIHOLE_DNS_1={{ pihole_setupvars_pihole_dns_1 }}
-PIHOLE_DNS_2={{ pihole_setupvars_pihole_dns_2 }}
+{% for dns_entry in pihole_setupvars_pihole_dns %}
+PIHOLE_DNS_{{ loop.index }}={{ dns_entry }}
+{% endfor %}
 QUERY_LOGGING={{ pihole_setupvars_query_logging }}
 INSTALL_WEB_SERVER={{ pihole_setupvars_install_web_server }}
 INSTALL_WEB_INTERFACE={{ pihole_setupvars_install_web_interface }}

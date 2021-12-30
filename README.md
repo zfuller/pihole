@@ -28,8 +28,8 @@ recommended to store this variable in ansible vault.
 #### pihole_setupvars_ipv4_address
 IPv4 adress of the pihole
 
-#### pihole_setupvars_pihole_dns_1/2
-DNS servers you want the pihole to use
+#### pihole_setupvars_pihole_dns
+List of DNS servers you want the pihole to use
 
 ##### DNS
 Alternative DNS Providers
@@ -62,8 +62,9 @@ Cloudflare: https://1.1.1.1/dns/
   vars:
     pihole_setupvars_ipv4_address: 192.168.1.100
     pihole_setupvars_webpassword: 35030714f1136486a612d7014b739a6c7ef3be589bb14b14a3d01f521dd7ef18
-    pihole_setupvars_pihole_dns_1: 1.1.1.1
-    pihole_setupvars_pihole_dns_2: 1.0.0.1
+    pihole_setupvars_pihole_dns:
+      - 1.1.1.1
+      - 1.0.0.1
   roles:
     - zfuller.pihole
 ```

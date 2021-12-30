@@ -21,8 +21,10 @@ pihole_setupvars_install_web_interface: "true"
 pihole_setupvars_lighttpd_enabled: "true"
 pihole_setupvars_webpassword:
 pihole_setupvars_blocking_enabled: "true"
-pihole_setupvars_pihole_dns_1: 8.8.8.8
-pihole_setupvars_pihole_dns_2:
+
+pihole_setupvars_pihole_dns:
+  - 8.8.8.8
+
 pihole_setupvars_dns_fqdn_required: "true"
 pihole_setupvars_dns_bogus_priv: "true"
 pihole_setupvars_dnssec: "true"
