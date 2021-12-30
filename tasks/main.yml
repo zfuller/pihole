@@ -94,10 +94,16 @@
   debug:
     msg: "visit http://{{ pihole_setupvars_ipv4_address }}/admin/ to start managing your pi-hole"
   when:
-    - pihole_setupvars_ipv4_address and pihole_setupvars_ipv4_address|length > 0
+    - pihole_setupvars_ipv4_address
+    - pihole_setupvars_ipv4_address|length > 0
+    - pihole_setupvars_install_web_interface == "true"
+    - pihole_setupvars_install_web_server == "true"
 
 - name: Finished! ipv6
   debug:
     msg: "visit http://{{ pihole_setupvars_ipv6_address }}/admin/ to start managing your pi-hole"
   when:
-    - pihole_setupvars_ipv6_address and pihole_setupvars_ipv6_address|length > 0
+    - pihole_setupvars_ipv6_address
+    - pihole_setupvars_ipv6_address|length > 0
+    - pihole_setupvars_install_web_interface == "true"
+    - pihole_setupvars_install_web_server == "true"
