@@ -4,78 +4,75 @@
     name: git
     state: present
 
+- name: ensure pihole group exists for pi user
+  group:
+    name: "{{ pihole_group }}"
+    state: present
+
+- name: create pihole user
+  user:
+    name: "{{ pihole_user }}"
+    comment: pihole
+    groups: "{{ pihole_group }}"
+
+- name: Ensure pihole destination exists
+  stat:
+    path: "{{ pihole_directory }}"
+  register: pihole_dir
+
+- name: making pihole git directory
+  file:
+    path: "{{ pihole_directory }}"
+    state: directory
+    mode: 0755
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+  when:
+    - pihole_dir.stat.isdir is not defined
+
+- name: cloning pihole
+  git:
+    repo: "{{ pihole_repo }}"
+    dest: "{{ pihole_directory }}"
+    depth: "{{ pihole_repo_depth }}"
+    version: "{{ pihole_branch }}"
+
+- name: fix file permissions
+  file:
+    path: "{{ pihole_directory }}"
+    state: directory
+    recurse: yes
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+
+- name: check if pihole etc dir exists
+  stat:
+    path: "{{ pihole_etc_dir }}"
+  register: pi_etc_dir
+
+- name: making pihole etc directory
+  file:
+    path: "{{ pihole_etc_dir }}"
+    state: directory
+    mode: 0755
+  when:
+    - not pi_etc_dir.stat.exists
+
+- name: pushing config file setupVars
+  template:
+    src: templates/setupVars.conf.j2
+    dest: "{{ pihole_etc_dir }}/setupVars.conf"
+    mode: 0644
+
 - name: check for existing installation of pihole
   stat:
     path: "{{ pihole_bin_path }}"
   register: pihole_bin
 
-- name: install pihole
-  block:
-    - name: ensure pihole group exists for pi user
-      group:
-        name: "{{ pihole_group }}"
-        state: present
-
-    - name: create pihole user
-      user:
-        name: "{{ pihole_user }}"
-        comment: pihole
-        groups: "{{ pihole_group }}"
-
-    - name: Ensure pihole destination exists
-      stat:
-        path: "{{ pihole_directory }}"
-      register: pihole_dir
-
-    - name: making pihole git directory
-      file:
-        path: "{{ pihole_directory }}"
-        state: directory
-        mode: 0755
-        owner: "{{ pihole_user }}"
-        group: "{{ pihole_group }}"
-      when:
-        - pihole_dir.stat.isdir is not defined
-
-    - name: cloning pihole
-      git:
-        repo: "{{ pihole_repo }}"
-        dest: "{{ pihole_directory }}"
-        depth: "{{ pihole_repo_depth }}"
-        version: "{{ pihole_branch }}"
-
-    - name: fix file permissions
-      file:
-        path: "{{ pihole_directory }}"
-        state: directory
-        recurse: yes
-        owner: "{{ pihole_user }}"
-        group: "{{ pihole_group }}"
-
-    - name: check if pihole etc dir exists
-      stat:
-        path: "{{ pihole_etc_dir }}"
-      register: pi_etc_dir
-
-    - name: making pihole etc directory
-      file:
-        path: "{{ pihole_etc_dir }}"
-        state: directory
-        mode: 0755
-      when:
-        - not pi_etc_dir.stat.exists
-
-    - name: pushing config file setupVars
-      template:
-        src: templates/setupVars.conf.j2
-        dest: "{{ pihole_etc_dir }}/setupVars.conf"
-        mode: 0644
-
-    - name: installing pihole  # noqa 305
-      shell:
-        chdir: "{{ pihole_directory }}/automated install/"
-        cmd: "bash basic-install.sh --unattended"
-
+- name: installing pihole
+  shell:
+    chdir: "{{ pihole_directory }}/automated install/"
+    cmd: "bash basic-install.sh --unattended"
   when:
     - not pihole_bin.stat.exists or pihole_reinstall
 
