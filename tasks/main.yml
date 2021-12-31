@@ -92,6 +92,8 @@
     var: updatePihole.stdout_lines
   when: updatePihole.changed == true
 
+- include_tasks: domainlistings.yml
+
 - name: Finished! ipv4
   debug:
     msg: "visit http://{{ pihole_setupvars_ipv4_address }}/admin/ to start managing your pi-hole"
