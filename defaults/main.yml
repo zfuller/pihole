@@ -38,3 +38,10 @@ pihole_setupvars_rev_server_domain:
 pihole_setupvars_admin_email:
 pihole_setupvars_weblayout: "boxed"
 pihole_setupvars_webtheme: "default-dark"
+
+# Gravity database:
+pihole_gravity_managed: true
+pihole_gravity_lists:
+    - address: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      comment: Default Pi-Hole block list
+      enabled: true
