@@ -50,6 +50,20 @@ Cloudflare: https://1.1.1.1/dns/
 ## Role Variables
 [defaults/main.yml](defaults/main.yml) for default values
 
+### Black- or Whitelisting Domains
+
+Domains, wildcards or regex can be added to the PiHole configuration by the following configuration variables. Each of them is a list, expecting a single domain or regular expression per line.
+
+```yaml
+pihole_whitelist_domains: []
+pihole_blacklist_domains:
+  - ads.example.com
+pihole_whitelist_regex: []
+pihole_blacklist_regex: []
+pihole_whitelist_wildcards: []
+pihole_blacklist_wildcards: []
+```
+
 ## Example Playbook
 ```yaml
 ---
