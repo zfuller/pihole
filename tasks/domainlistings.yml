@@ -1,0 +1,31 @@
+---
+
+- name: add whitelisted domains
+  command: "{{ pihole_bin_path }} -w {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_whitelist_domains }}"
+
+- name: add blacklisted domains
+  command: "{{ pihole_bin_path }} -b {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_blacklist_domains }}"
+
+- name: add whitelist wildcards
+  command: "{{ pihole_bin_path }} --white-wild {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_whitelist_wildcards }}"
+
+- name: add blacklist wildcards
+  command: "{{ pihole_bin_path }} --wild {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_blacklist_wildcards }}"
+
+- name: add whitelist regex
+  command: "{{ pihole_bin_path }} --white-regex {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_whitelist_regex }}"
+
+- name: add blacklist regex
+  command: "{{ pihole_bin_path }} --regex {{ item }}"
+  notify: restart pi-hole dns
+  with_items: "{{ pihole_blacklist_regex }}"

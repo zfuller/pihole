@@ -38,3 +38,12 @@ pihole_setupvars_rev_server_domain:
 pihole_setupvars_admin_email:
 pihole_setupvars_weblayout: "boxed"
 pihole_setupvars_webtheme: "default-dark"
+
+# Black- and whitelisting:
+pihole_whitelist_domains: []
+pihole_blacklist_domains: []
+pihole_whitelist_regex: []
+pihole_blacklist_regex: []
+pihole_whitelist_wildcards: []
+pihole_blacklist_wildcards: []
+
