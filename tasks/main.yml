@@ -63,7 +63,7 @@
     src: templates/setupVars.conf.j2
     dest: "{{ pihole_etc_dir }}/setupVars.conf"
     mode: 0644
-  register: piholeConfigUpdate
+  notify: reconfigure pi-hole dns
 
 - name: check for existing installation of pihole
   stat:
@@ -75,7 +75,7 @@
     chdir: "{{ pihole_directory }}/automated install/"
     cmd: "bash basic-install.sh --unattended"
   when:
-    - not pihole_bin.stat.exists or pihole_reinstall or piholeConfigUpdate.changed == true
+    - not pihole_bin.stat.exists or pihole_reinstall
 
 - name: "check and apply updates to pihole"
   command: "{{ pihole_bin_path }} updatePihole"
