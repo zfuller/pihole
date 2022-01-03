@@ -24,20 +24,13 @@
     group: "{{ pihole_group }}"
 
 - name: cloning pihole
+  become: yes
+  become_user: "{{ pihole_user }}"
   git:
     repo: "{{ pihole_repo }}"
     dest: "{{ pihole_directory }}"
     depth: "{{ pihole_repo_depth }}"
     version: "{{ pihole_branch }}"
-
-- name: fix file permissions
-  file:
-    path: "{{ pihole_directory }}"
-    state: directory
-    recurse: yes
-    owner: "{{ pihole_user }}"
-    group: "{{ pihole_group }}"
-
 
 - name: Ensure that pihole configuration dir exists
   file:
