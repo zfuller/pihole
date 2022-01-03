@@ -31,6 +31,7 @@
     dest: "{{ pihole_directory }}"
     depth: "{{ pihole_repo_depth }}"
     version: "{{ pihole_branch }}"
+    update: no
 
 - name: Ensure that pihole configuration dir exists
   file:
