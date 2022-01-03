@@ -16,19 +16,12 @@
     groups: "{{ pihole_group }}"
 
 - name: Ensure pihole destination exists
-  stat:
-    path: "{{ pihole_directory }}"
-  register: pihole_dir
-
-- name: making pihole git directory
   file:
     path: "{{ pihole_directory }}"
     state: directory
     mode: 0755
     owner: "{{ pihole_user }}"
     group: "{{ pihole_group }}"
-  when:
-    - pihole_dir.stat.isdir is not defined
 
 - name: cloning pihole
   git:
@@ -45,18 +38,12 @@
     owner: "{{ pihole_user }}"
     group: "{{ pihole_group }}"
 
-- name: check if pihole etc dir exists
-  stat:
-    path: "{{ pihole_etc_dir }}"
-  register: pi_etc_dir
 
-- name: making pihole etc directory
+- name: Ensure that pihole configuration dir exists
   file:
     path: "{{ pihole_etc_dir }}"
     state: directory
     mode: 0755
-  when:
-    - not pi_etc_dir.stat.exists
 
 - name: pushing config file setupVars
   template:
