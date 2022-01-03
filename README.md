@@ -47,6 +47,23 @@ Cloudflare: https://1.1.1.1/dns/
   - 1.0.0.1
 ```
 
+## Managing Gravity lists:
+
+This role supports management of Gravity lists. For the role to insert and update these, the gravity management has to be enabled using
+
+```yaml
+pihole_gravity_managed: true
+```
+
+The Gravity items have to be provided as list with the items `address`, `comment` and optionally a `enabled` state:
+
+```yaml
+pihole_gravity_lists:
+    - address: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      comment: Default Pi-Hole block list
+      enabled: true
+```
+
 ## Role Variables
 [defaults/main.yml](defaults/main.yml) for default values
 

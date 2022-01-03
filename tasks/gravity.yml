@@ -1,0 +1,25 @@
+---
+
+- name: read gravity lists
+  command:
+    argv:
+      - sqlite3
+      - "{{ pihole_etc_dir }}/gravity.db"
+      - "SELECT address, enabled, comment FROM adlist"
+  register: sqlite_gravity_lists
+  changed_when: false
+
+- set_fact:
+    gravity_lists: "{{ gravity_lists|default([]) + [ {'address': item.split('|')[0], 'enabled': item.split('|')[1] | bool, 'comment': item.split('|')[2]} ] }}"
+  with_items: "{{ sqlite_gravity_lists.stdout_lines }}"
+
+- name: add gravity lists
+  command:
+    argv:
+      - sqlite3
+      - "{{ pihole_etc_dir }}/gravity.db"
+      - "INSERT OR REPLACE INTO adlist (id, address, enabled, comment) VALUES ((SELECT id FROM adlist WHERE address = '{{ item.address }}'), '{{ item.address }}', {{ item.enabled | default(true) }}, '{{ item.comment }}');"
+  notify: update pi-hole gravity
+  with_items: "{{ pihole_gravity_lists }}"
+  when:
+    - item not in gravity_lists

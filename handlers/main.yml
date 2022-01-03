@@ -1,0 +1,7 @@
+# handlers file
+---
+- name: restart pi-hole dns
+  command: "{{ pihole_bin_path }} restartdns"
+
+- name: update pi-hole gravity
+  command: "{{ pihole_bin_path }} -g"
